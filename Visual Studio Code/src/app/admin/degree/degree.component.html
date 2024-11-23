@@ -1,0 +1,103 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Degree Info</h1>
+            </div>
+
+            <td> <button mat-raised-button color="primary" (click)="createDegree()">Create</button></td>
+            <div class="table">
+
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Degree Name</th>
+                            <th scope="col">Facilities</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of degree">
+                            <td>{{obj.degreename}}</td>
+
+                            <td>
+                                <button mat-raised-button color="primary" [routerLink]="['/admin/DegreeFacility']"
+                                    [queryParams]="{id: obj.id, name: obj.degreename}">
+                                    Facilities
+                                </button>
+                            </td>
+
+                            <td>
+                                <button mat-raised-button color="primary" (click)="updateDegree(obj)">Update</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn" (click)="deleteDegree(obj.id)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #callUpdateDailog>
+    <h2 mat-dialog-title>Update Degree</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="UpdateDegree">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Degree Name</mat-label>
+                    <input type="text" matInput formControlName="degreename" [(ngModel)]="pData.degreename">
+                </mat-form-field>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="cancel() ">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+
+</ng-template>
+
+
+
+<!-- Create Degree Dialog -->
+<ng-template #callCreateDialog>
+    <h2 mat-dialog-title>Create Degree</h2>
+    <mat-dialog-content>
+        <form [formGroup]="CreateDegree">
+            <mat-form-field>
+                <mat-label>Degree Name</mat-label>
+                <input matInput formControlName="degreename">
+            </mat-form-field>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="cancel() ">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" (click)="saveNewDegree()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+
+
+<ng-template #callDeleteDegree>
+    <h1 mat-dialog-title>Delete Degree</h1>
+    <div mat-dialog-content>
+        Would you like to delete this Degree?
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+    </div>
+</ng-template>
+
+<app-footer></app-footer>

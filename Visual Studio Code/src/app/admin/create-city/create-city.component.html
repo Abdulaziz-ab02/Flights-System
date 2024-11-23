@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Create City</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form action=""   [formGroup]="createCity">
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>City Name</mat-label>
+      <input type="text"   matInput formControlName="cityname">
+      <mat-error *ngIf="createCity.controls['cityname'].hasError('required')">City Name is required</mat-error>
+    </mat-form-field>
+  </div>
+
+ <!-- Country Dropdown -->
+ <div class="example-container">
+  <mat-form-field>
+    <mat-label>Country</mat-label>
+    <mat-select formControlName="countryid">
+      <mat-option *ngFor="let country of countries" [value]="country.id">
+        {{ country.countryname }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="createCity.controls['countryid'].hasError('required')">Country is required</mat-error>
+  </mat-form-field>
+</div>
+
+
+<input type="file" #file formControlName="cityimage" (change)="uploadFile(file.files)">
+
+
+</form>
+
+</mat-dialog-content>
+ 
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()" >Save</button>
+</mat-dialog-actions>

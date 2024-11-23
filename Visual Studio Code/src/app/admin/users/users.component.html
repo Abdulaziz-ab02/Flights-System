@@ -1,0 +1,43 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Registered Users Information</h1>
+                <!-- <a href="">Show All</a> -->
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">nationalnumber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of admin.users">
+                            <td>{{obj.firstname}}</td>
+                            <td>{{obj.lastname}}</td>
+                            <td>{{obj.username}}</td>
+                            <td>{{obj.email}}</td>
+                            <td>{{obj.phone}}</td>
+                            <td>{{obj.dateofbirth |date}}</td>
+                            <td>{{obj.nationalnumber}}</td>
+                            <!-- <td><a class="btn btn-sm btn-primary" href="">Detail</a></td> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

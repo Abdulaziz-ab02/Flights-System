@@ -1,0 +1,80 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Airlines Info</h1>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Airline Name</th>
+                            <th scope="col">Airline Username</th>
+                            <th scope="col">Airline Email</th>
+                            <th scope="col">Airline Address</th>
+                            <th scope="col">Airline Image</th>
+                            <th scope="col" colspan="2">Operations</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of admin.airline">
+                            <td>{{obj.airlinename}}</td>
+                            <td>{{obj.username}}</td>
+                            <td>{{obj.airlineemail}}</td>
+                            <td>{{obj.airlineaddress}}</td>
+                            <td>
+                                <img src="../../../assets/Images/{{obj.airlineimage}}"
+                                    style="width: 80px; height: 80px;">
+                            </td>
+                            <td>
+
+                                <ng-container *ngIf="obj.activationstatus === 'Pending'">
+                            <td>
+                                <button class="btn btn-success" (click)="approveAirline(obj.id)">Approve</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn" (click)="rejectAirline(obj.id)">Deny</button>
+                            </td>
+                            </ng-container>
+
+                            <ng-container *ngIf="obj.activationstatus === 'Approved'">
+                                <td>
+                                    <button class="btn btn-success" disabled>Approved</button>
+                                </td>
+                            </ng-container>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #callDeleteDailog>
+    <h1 mat-dialog-title>Delete Airline</h1>
+    <div mat-dialog-content>Are you sure you went to delete this Airline ?</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close="no">No</button>
+    </div>
+</ng-template>
+
+<ng-template #callChangeStatusDailog>
+    <h1 mat-dialog-title>Approve Airline</h1>
+    <div mat-dialog-content>Are you sure you went to approve this Airline</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close="no">No</button>
+    </div>
+</ng-template>
+
+
+
+<app-footer></app-footer>

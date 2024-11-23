@@ -1,0 +1,104 @@
+/* Main container for layout */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .app-container {
+    display: flex;
+    height: 100vh;  /* Full viewport height */
+  }
+  
+  /* Sidebar */
+  app-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px; /* Sidebar width */
+    height: 100%;
+    background-color: #f4f4f4;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .main-content {
+    margin-left: 250px;  /* Offset for sidebar */
+    padding: 20px;
+    width: calc(100% - 250px);  /* Ensure content fills the remaining space */
+    background-color: #fff;
+    box-sizing: border-box;
+    overflow: auto;  /* Ensure the content doesn't overflow */
+  }
+  
+  /* Table */
+  .country-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .country-table th,
+  .country-table td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .country-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  
+  /* Dialog container */
+  .dialog-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Error message */
+  .error-message {
+    color: red;
+    font-size: 0.9em;
+  }
+  
+  /* Footer */
+  app-footer {
+    margin-top: 30px;
+    background-color: #222;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    .app-container {
+      flex-direction: column;
+    }
+    
+    app-sidebar {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    
+    .main-content {
+      margin-left: 0;
+      width: 100%;
+    }
+  
+    app-footer {
+      position: static;
+      padding: 15px;
+    }
+  }
+  

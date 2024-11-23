@@ -1,0 +1,132 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <app-navbar></app-navbar>
+
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+      <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+          <h1 class="mb-4">Benefits Reports</h1>
+          <div class="row">
+            <!-- Year Only Search -->
+            <div class="col-md-6">
+              <form [formGroup]="yearForm" (ngSubmit)="onYearSearch()">
+                <div class="mb-3">
+                  <label for="year" class="form-label">Annual Benefits Report</label>
+                  <input 
+                    type="number" 
+                    class="form-control" 
+                    formControlName="year"
+                    min="2000" 
+                    max="2099"
+                    placeholder="Enter year (e.g. 2024)">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Get Annual Report</button>
+              </form>
+            </div>
+            
+            <!-- Year and Month Search -->
+            <div class="col-md-6">
+              <form [formGroup]="monthYearForm" (ngSubmit)="onMonthYearSearch()">
+                <div class="mb-3">
+                  <label for="month" class="form-label">Monthly Benefits Report</label>
+                  <input 
+                    type="month" 
+                    class="form-control" 
+                    formControlName="month">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Get Monthly Report</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
+          <h1 class="mb-4">Report</h1>
+          <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            <div class="mb-3">
+
+              <label for="dateFrom" class="form-label">Search by Start Date</label>
+              <input type="date" class="form-control" formControlName="dateFrom">
+            </div>
+            <div class="mb-3">
+              <label for="dateTo" class="form-label">Search by End Date</label>
+              <input type="date" class="form-control" formControlName="dateTo">
+            </div>
+            <div class="mb-3">
+              <label for="firstname" class="form-label">Search by First name</label>
+              <input type="text" class="form-control" formControlName="firstname">
+            </div>
+            <div class="mb-3">
+              <label for="lastname" class="form-label">Search by Last name</label>
+              <input type="text" class="form-control" formControlName="lastname">
+            </div>
+            <div class="mb-3">
+              <label for="flightnumber" class="form-label">Search by Flight Number</label>
+              <input type="text" class="form-control" formControlName="flightnumber">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- Section to display Reservations and Benefits -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Reservations</h6>
+      </div>
+      <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-outline-success me-2" (click)="exportToExcel()">Export to Excel</button>
+        <button class="btn btn-outline-danger" (click)="exportToPDF()">Export to PDF</button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr class="text-dark">
+              <th scope="col">Reservation Date</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Flight Number</th>
+              <th scope="col">Departure Date</th>
+              <th scope="col">Destination Date</th>
+              <th scope="col">Number of Passengers</th>
+              <th scope="col">Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of afterSearch">
+              <td>{{ obj.reservationdate | date: 'dd MMM yyyy' }}</td>
+              <td>{{ obj.firstname }}</td>
+              <td>{{ obj.lastname }}</td>
+              <td>{{ obj.flightnumber }}</td>
+              <td>{{ obj.departuredate | date: 'short' }}</td>
+              <td>{{ obj.destinationdate | date: 'short' }}</td>
+              <td>{{ obj.numofpassengers }}</td>
+              <td>{{ obj.totalprice | currency }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7"><strong>Total Benefits</strong></td>
+              <td><strong>{{ totalBenefits | currency }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Chart Section -->
+  <div id="chart"></div>
+</div>
+
+<app-footer></app-footer>

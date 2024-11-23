@@ -1,0 +1,78 @@
+<!-- Sign up form -->
+<div class="main">
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Airline Sign up</h2>
+                    <form [formGroup]="createAirlineForm" method="POST" class="register-form" id="register-form">
+
+                        <div class="form-group">
+                            <label for="airlineName"><i class="zmdi zmdi-airplane-landing"></i></label>
+                            <input type="text" name="airlineName" id="airlineName" placeholder="Airline Name"
+                                formControlName="airlinename" />
+                            <span *ngIf="createAirlineForm.controls['airlinename'].hasError('required')"
+                                style="color:red;">Airline Name is Required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="airlineEmail"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" name="airlineEmail" id="airlineEmail" placeholder="Airline Email"
+                                formControlName="airlineemail" />
+                            <span *ngIf="createAirlineForm.controls['airlineemail'].hasError('required')"
+                                style="color:red;">Email is Required</span>
+                            <span *ngIf="createAirlineForm.controls['airlineemail'].hasError('email')"
+                                style="color:red;">Please enter a valid email address</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="airlineAddress"><i class="zmdi zmdi-home"></i></label>
+                            <input type="text" name="airlineAddress" id="airlineAddress" placeholder="Airline Address"
+                                formControlName="airlineaddress" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="username" id="username" placeholder="Your Username"
+                                formControlName="username" />
+                            <span *ngIf="createAirlineForm.controls['username'].hasError('required')"
+                                style="color:red;">Username is Required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="pass" id="pass" placeholder="Password"
+                                formControlName="password" (change)="matchError()" />
+                            <span *ngIf="createAirlineForm.controls['password'].hasError('required')"
+                                style="color:red;">Password is Required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="re_pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"
+                                formControlName="repeatPassword" (change)="matchError()" />
+                            <span *ngIf="createAirlineForm.controls['repeatPassword'].hasError('misMatch')"
+                                style="color: red;">Passwords do not match!</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="airlineImage"><i class="zmdi zmdi-image"></i></label>
+                            <input type="file" #file name="airlineImage" id="airlineImage"
+                                formControlName="airlineimage" (change)="uploadImage(file.files)" />
+                        </div>
+
+                        <div class="form-group form-button">
+                            <button [disabled]="!createAirlineForm.valid" class="form-submit btn" type="button"
+                                (click)="submit()">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="../../../assets/LogReg/images/signup-image.jpg" alt="sign up image"></figure>
+                    <a routerLink="/security/register" class="signup-image-link">Register as User</a>
+                    <a routerLink="/security/login" class="signup-image-link">Already have an account?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

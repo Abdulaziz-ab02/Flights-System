@@ -1,0 +1,257 @@
+<app-sidebar></app-sidebar>
+<!-- <div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="container" [ngSwitch]="role_id">
+            <div class="row justify-content-between align-items-center" *ngSwitchCase="1">
+                <h1>My Profile</h1>
+                <div class="col-md-5">
+                    <img src=".. /../../assets/Images/{{home.userProfileInfo.image}}" class="img-fluid"
+                        style="width: 80%; height: 80%; border-radius: 50px; border: 5px dashed #184263; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        <h4>Full Name : {{home.userProfileInfo.firstname}} {{home.userProfileInfo.lastname}}</h4>
+                        <h4>Username : {{home.userProfileInfo.username}}</h4>
+                        <h4>Email : {{home.userProfileInfo.email}}</h4>
+                        <h4>Phone : {{home.userProfileInfo.phone}}</h4>
+                        <h4>Date of Birth : {{home.userProfileInfo.dateofbirth | date}}</h4>
+                        <h4>National Number : {{home.userProfileInfo.nationalnumber}}</h4>
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <button class="btn btn-primary" (click)="openUpdateDialog(home.userProfileInfo)">Update
+                            Profile</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-between align-items-center" *ngSwitchCase="3">
+                <h1>Airline Info</h1>
+
+                <div class="col-md-5">
+                    <img src="../../../assets/Images/{{home.airlineProfileInfo.airlineimage}}" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <h4>Airline name : {{home.airlineProfileInfo.airlinename}}</h4>
+                        <h4>Username : {{home.airlineProfileInfo.username}}</h4>
+                        <h4>Airline email : {{home.airlineProfileInfo.airlineemail}}</h4>
+                        <h4>Airline address : {{home.airlineProfileInfo.airlineaddress}}</h4>
+                    </div>
+                    <div style="margin-top: 50px;">
+                        <button class="btn btn-primary"
+                            (click)="openAirlineUpdateDialog(home.airlineProfileInfo)">Update Profile</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="container" [ngSwitch]="role_id">
+
+            <!-- User Profile Section -->
+            <div class="row justify-content-between align-items-center" *ngSwitchCase="1">
+                <h1 class="text-center mb-4">My Profile</h1>
+
+                <div class="col-md-4 text-center">
+                    <div class="profile-image-container">
+                        <img src="../../../assets/Images/{{home.userProfileInfo.image}}" alt="Profile Picture"
+                            class="img-fluid rounded-circle shadow-lg" style="width: 90%; max-width: 200px; " />
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card shadow-sm p-4">
+                        <div class="profile-info p-4 mb-3"
+                            style="background-color: #1A374D; color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+                            <p style="letter-spacing: 1.2px;"><strong>Full Name:</strong>
+                                {{home.userProfileInfo.firstname}}
+                                {{home.userProfileInfo.lastname}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Username:</strong>
+                                {{home.userProfileInfo.username}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Email:</strong> {{home.userProfileInfo.email}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Phone:</strong> {{home.userProfileInfo.phone}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Date of Birth:</strong>
+                                {{home.userProfileInfo.dateofbirth | date}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>National Number:</strong>
+                                {{home.userProfileInfo.nationalnumber}}</p>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-primary btn-lg" (click)="openUpdateDialog(home.userProfileInfo)">
+                                Update Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Airline Profile Section -->
+            <div class="row justify-content-between align-items-center" *ngSwitchCase="3">
+                <h1 class="text-center mb-4">Airline Info</h1>
+
+                <div class="col-md-4 text-center">
+                    <div class="profile-image-container">
+                        <img src="../../../assets/Images/{{home.airlineProfileInfo.airlineimage}}" alt="Airline Image"
+                            class="img-fluid rounded-circle shadow-lg" style="width: 90%; max-width: 200px; " />
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="card shadow-sm p-4">
+                        <div class="profile-info p-4 mb-3"
+                            style="background-color: #1A374D; color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+                            <p style="letter-spacing: 1.2px;"><strong>Airline Name:</strong>
+                                {{home.airlineProfileInfo.airlinename}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Username:</strong>
+                                {{home.airlineProfileInfo.username}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Airline Email:</strong>
+                                {{home.airlineProfileInfo.airlineemail}}</p>
+                            <p style="letter-spacing: 1.2px;"><strong>Airline Address:</strong>
+                                {{home.airlineProfileInfo.airlineaddress}}</p>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-primary btn-lg"
+                                (click)="openAirlineUpdateDialog(home.airlineProfileInfo)">
+                                Update Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #callUpdateAdminDailog>
+    <h2 mat-dialog-title>Update Profile</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateUserForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput formControlName="firstname" [(ngModel)]="pDataAdmin.firstname">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput formControlName="lastname" [(ngModel)]="pDataAdmin.lastname">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput formControlName="username" [(ngModel)]="pDataAdmin.username">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" [(ngModel)]="pDataAdmin.email">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Phone</mat-label>
+                    <input type="text" matInput formControlName="phone" [(ngModel)]="pDataAdmin.phone">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Birth Date</mat-label>
+                    <input type="date" matInput formControlName="dateofbirth" [(ngModel)]="pDataAdmin.dateofbirth">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label> National Number</mat-label>
+                    <input type="text" matInput formControlName="nationalnumber"
+                        [(ngModel)]="pDataAdmin.nationalnumber">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" [(ngModel)]="pDataAdmin.password">
+                </mat-form-field>
+            </div>
+
+            <input type="file" #file formControlName="image" (change)="uploadProfileImage(file.files)" accept="image/*">
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="update()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+
+<ng-template #callAirlineUpdateDailog>
+    <h2 mat-dialog-title>Update Profile</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateAirlineForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Airline name</mat-label>
+                    <input type="text" matInput formControlName="airlinename" [(ngModel)]="pData.airlinename">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Airline email</mat-label>
+                    <input type="email" matInput formControlName="airlineemail" [(ngModel)]="pData.airlineemail">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Airline address</mat-label>
+                    <input type="text" matInput formControlName="airlineaddress" [(ngModel)]="pData.airlineaddress">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput formControlName="username" [(ngModel)]="pData.username">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" [(ngModel)]="pData.password">
+                </mat-form-field>
+            </div>
+
+            <input type="file" #file formControlName="airlineimage" (change)="uploadImage(file.files)">
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+<app-footer></app-footer>

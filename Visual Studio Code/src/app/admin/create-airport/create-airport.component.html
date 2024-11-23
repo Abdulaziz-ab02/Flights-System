@@ -1,0 +1,70 @@
+<!-- create-airport.component.html -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<h2 mat-dialog-title>Create Airport</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="createAirport">
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Airport Name</mat-label>
+        <input type="text" matInput formControlName="airportname">
+        <mat-error *ngIf="createAirport.controls['airportname'].hasError('required')">
+          Airport Name is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Airport Code</mat-label>
+        <input type="text" matInput formControlName="iatacode">
+        <mat-error *ngIf="createAirport.controls['iatacode'].hasError('required')">
+          Airport code is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+
+    <div class="coordinates-container">
+      <mat-form-field>
+        <mat-label>Airport Longitude</mat-label>
+        <input type="number" step="0.000001" matInput formControlName="longitude">
+        <mat-error *ngIf="createAirport.controls['longitude'].hasError('required')">
+          Airport longitude is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Airport latitude</mat-label>
+        <input type="number" step="0.000001" matInput formControlName="latitude">
+        <mat-error *ngIf="createAirport.controls['latitude'].hasError('required')">
+          Airport latitude is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>City</mat-label>
+        <mat-select formControlName="cityid">
+          <mat-option *ngFor="let city of cities" [value]="city.id">
+            {{ city.cityname }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="createAirport.controls['cityid'].hasError('required')">
+          City is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <input type="file" #file formControlName="airportimage" (change)="uploadFile(file.files)">
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>

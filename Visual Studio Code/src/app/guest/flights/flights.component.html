@@ -1,0 +1,174 @@
+<app-navbar></app-navbar>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<div class="hero">
+    <div class="container">
+        <div class="row align-items-center"> 
+          <div class="col-lg-7">
+            <div class="intro-wrap">
+          
+            <h1 class="mb-5"><span class="d-block">Please Find your flight</span> Trip In <span
+                class="typed-words"></span></h1>
+                <div class="row">
+                  <div class="col-12">
+                      <!--Here where the form should be so we used a shared component aiming to reduce the redundancy :)-->
+                    <app-search-form (flightsFound)="handleFlightsFound($event)"
+                      (partnerCount)="handlePartnerCount($event)"
+                    ></app-search-form>
+                   
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 filter-container">
+      <h4>Filter Flights</h4>
+      <div class="form-group">
+        <label for="priceRange">Price Range (JOD)</label>
+        <input type="range" class="form-control-range" id="priceRange" [(ngModel)]="selectedPriceRange" min="100" max="1000" step="50" (change)="applyFilters()">
+        <p>Selected: <span id="priceOutput">{{ selectedPriceRange }} JOD</span></p>
+      </div>
+      <div class="form-group">
+        <h5>Airlines</h5>
+        <div class="form-check" *ngFor="let airline of airlines">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [value]="airline.airlinename"
+            (change)="toggleAirlineFilter(airline.airlinename, $event)"
+          />
+          <label class="form-check-label">{{ airline.airlinename }}</label>
+        </div>
+      </div>
+   
+
+
+</div>
+
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12 mb-4" *ngFor="let flight of filteredFlights">
+          <div class="card flight-card">
+            <div class="card-body">
+              <!-- Flight details -->
+              <div class="row align-items-center">
+                <div class="col-md-4 d-flex align-items-center">
+                  <img src="../../../assets/Images/{{flight.airlineimage}}" alt="{{ flight.airlinename }} logo" class="airline-logo">
+                  <h5 class="airline-name ml-3"><i class="fas fa-plane"></i> {{ flight.airlinename }}</h5>
+                </div>
+                <div class="col-md-4">
+                  <p><strong><i class="fas fa-plane-departure"></i> Departure:</strong>{{ flight.departuredate | date:'short' }} ({{ flight.departureIatacode }})</p>
+                  <p><strong><i class="fas fa-plane-arrival"></i> Arrival:</strong> {{ flight.destinationdate | date: 'short' }} ({{ flight.destinationIatacode }})</p>
+                </div>
+                <div class="col-md-4 text-right">
+                  <h5 class="flight-price">
+                  <i class="fas fa-dollar-sign"></i>
+                  <span *ngIf="flight.discountvalue > 0" class="original-price" style="text-decoration: line-through; color: black;">
+                    JOD {{ flight.price }}
+                  </span>
+                  
+                  <span *ngIf="flight.discountvalue > 0">
+                    JOD {{flight.priceAfterDiscount}}
+                  </span>
+              
+                  <!-- Display only the original price if there's no discount -->
+                  <span *ngIf="!flight.discountvalue || flight.discountvalue === 0">
+                    JOD {{ flight.price}}
+                  </span>
+                  </h5>
+                  <button class="btn btn-primary select-flight-btn" (click)="OpenFlightSelectionDialog(flight)">
+                    <i class="fas fa-check"></i> Select Flight
+                  </button>
+                </div>
+              </div>
+        
+                <!-- New Section for Degree Name and Facilities -->
+              <!-- Facilities Section -->
+ <!-- Facilities Section -->
+<div class="row mt-3">
+  <div class="col-md-6">
+    <p><strong><i class="fas fa-crown"></i> Degree:</strong> {{ flight.degreename }}</p>
+  </div>
+  <div class="col-md-6">
+    <p><strong><i class="fas fa-concierge-bell"></i> Facilities:</strong></p>
+    <ul class="facilities-list">
+      <!-- Loop over flight's own facilities array -->
+      <li *ngFor="let facility of flight.facilities">{{ facility.facilityname }},</li>
+    </ul>
+  </div>
+</div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+     
+  </div>
+  <ng-template #FLightSelectionDialog let-data>  
+    <mat-dialog-content class="mat-typography">
+      <h2>{{ data.flight.airlinename}}</h2>
+      <div class="row align-items-center mb-4">
+        <!-- Airline Image -->
+        <div class="col-md-6 text-center">
+          <img src="../../../assets/Images/{{data.flight.airlineimage}}" alt="Placeholder Airline logo" class="airlineLogoInFlightDialog mb-3">
+        </div>
+        <!-- Price -->
+        <div class="col-md-6 text-center">
+          <p><strong>Price:</strong> JOD {{data.flight.priceAfterDiscount }}</p>
+          <p><strong>Degree:</strong> {{data.flight.degreename}}</p>
+          <p><strong>Total Price:</strong> {{data.TotalPrice}}</p>
+
+        </div>
+      </div>
+  
+      <!-- Departure and Destination Information with Airplane Divider -->
+      <div class="row align-items-center">
+        <!-- Departure Section -->
+        <div class="col-md-5">
+          <h3><i class="fas fa-plane-departure"></i> Departure</h3>
+          <p><strong>City & Country:</strong>{{data.flight.departureCityName}}, {{data.flight.departureCountryName }} </p> <!-- Added city and country -->
+          <p><strong>Airport:</strong>{{data.flight.departureAirportName}}</p>
+          <p><strong>Date & Time:</strong> {{data.flight.departuredate| date:'short'}}</p>
+          <p><strong>IATA Code:</strong> {{data.flight.departureIatacode}}</p>
+        </div>
+  
+        <!-- Airplane Icon Divider -->
+        <div class="col-md-2 text-center">
+          <i class="fas fa-plane" style="font-size: 24px; transform: rotate(90deg);"></i>
+          <hr class="vertical-line" style="width: 2px; height: 100px; background-color: #ddd; margin: auto;">
+        </div>
+  
+        <!-- Destination Section -->
+        <div class="col-md-5">
+          <h3><i class="fas fa-plane-arrival"></i> Destination</h3>
+          <p><strong>City & Country:</strong>{{data.flight.destinationCityName}}, {{data.flight.destinationCountryName}}</p> <!-- Added city and country -->
+          <p><strong>Airport:</strong> {{data.flight.destinationAirportName}}</p>
+          <p><strong>Date & Time:</strong>{{data.flight.destinationdate| date:'short'}}</p>
+          <p><strong>IATA Code:</strong> {{data.flight.destinationIatacode}}</p>
+        </div>
+      </div>
+  
+      <!-- Facilities Section -->
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <p><strong>Facilities:</strong></p>
+          <ul class="facilities-list">
+            <li *ngFor="let faciliy of data.flight.facilities" >{{faciliy.facilityname}}</li>
+          </ul>
+        </div>
+      </div>
+    </mat-dialog-content>
+  
+    <mat-dialog-actions align="end">
+      <button mat-button color="warn" (click)="closeDialog()">Cancel</button>
+      <button mat-button color="primary" (click)="processToPayFunc()">Process To pay </button>
+    </mat-dialog-actions>
+  </ng-template>
+  
+  

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Create Country</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form action=""   [formGroup]="createCountryForm">
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Country Name</mat-label>
+      <input type="text"   matInput formControlName="countryname">
+      <mat-error *ngIf="createCountryForm.controls['countryname'].hasError('required')">Country Name is required</mat-error>
+    </mat-form-field>
+  </div>
+</form>
+
+</mat-dialog-content>
+ 
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()" >Save</button>
+</mat-dialog-actions>

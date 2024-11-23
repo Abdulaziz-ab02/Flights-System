@@ -1,0 +1,68 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Contact Page Info</h1>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Contact Email</th>
+                            <th scope="col">Contact Phone</th>
+                            <th scope="col">Contact Address</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{home.contactInfo[0].contactemail}}</td>
+                            <td>{{home.contactInfo[0].contactphone}}</td>
+                            <td>{{home.contactInfo[0].contactaddress}}</td>
+                            <td><button mat-raised-button color="primary"
+                                    (click)="openUpdateDialog(home.contactInfo[0])">Update</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #callUpdateDailog>
+    <h2 mat-dialog-title>Update Contact Us Page</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateContactForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Contact Email</mat-label>
+                    <input type="text" matInput formControlName="contactemail" [(ngModel)]="pData.contactemail">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Contact Phone</mat-label>
+                    <input type="text" matInput formControlName="contactphone" [(ngModel)]="pData.contactphone">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Contact Address</mat-label>
+                    <input type="text" matInput formControlName="contactaddress" [(ngModel)]="pData.contactaddress">
+                </mat-form-field>
+            </div>
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<app-footer></app-footer>

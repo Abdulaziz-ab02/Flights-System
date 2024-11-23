@@ -1,0 +1,106 @@
+/* Card container */
+.testimonial-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Hover effect for card */
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Card body with flex layout for image and text */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+/* Image container: Takes half the width of the card */
+.image-container {
+    width: 50%;
+    /* Half the card width */
+    height: 200px;
+    /* Set a height for the image */
+    margin: 0 auto 15px auto;
+    /* Centers the image horizontally */
+    display: flex;
+    justify-content: center;
+    /* Centers image horizontally */
+    align-items: center;
+    /* Centers image vertically */
+    overflow: hidden;
+}
+
+/* Image styling */
+.card-img {
+    object-fit: cover;
+    /* Makes sure the image covers the container */
+    width: 100%;
+    /* Ensures the image stretches across the container */
+    height: 100%;
+    border-radius: 10px;
+    /* Rounded corners for image */
+}
+
+/* Text content container */
+.text-content {
+    width: 100%;
+    /* Take the full width remaining */
+}
+
+/* Title styling */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Blockquote styling */
+blockquote {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Rating star styling */
+.star {
+    color: #ffbc00;
+    font-size: 1.2rem;
+}
+
+/* Text and date styling */
+p {
+    color: #666;
+}
+
+/* Small text for the date */
+.text-muted {
+    font-size: 0.875rem;
+    color: #999;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .testimonial-card {
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        flex-direction: column;
+    }
+
+    /* Image container adjusts for smaller screens */
+    .image-container {
+        width: 100%;
+        /* Image takes full width on small screens */
+        height: 180px;
+        /* Adjust height for mobile */
+    }
+}

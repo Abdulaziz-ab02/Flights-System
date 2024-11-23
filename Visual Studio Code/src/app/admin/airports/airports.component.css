@@ -1,0 +1,9 @@
+
+button {
+    margin-right: 8px;
+  }
+
+
+  .cdk-overlay-pane {
+    z-index: 1000 !important;  /* Ensure that the dialog is on top of other elements */
+  }

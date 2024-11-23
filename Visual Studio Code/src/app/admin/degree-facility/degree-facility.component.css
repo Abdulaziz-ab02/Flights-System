@@ -1,0 +1,98 @@
+/* Apply Sky Blue theme */
+body {
+  background-color: #e0f7fa; /* Light Sky Blue */
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Container for sidebar and content */
+.container {
+  flex: 1;
+  padding: 30px;
+  margin-left: 240px; /* Adjust this to match the width of your sidebar */
+}
+
+/* Degree Name Styling */
+h2 {
+  text-align: center;
+  font-size: 2.5em;
+  color: #0288d1; /* Sky Blue Color */
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Table Styling */
+.styled-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Header Styling */
+.styled-table th {
+  background-color: #bed6e4; /* Light Sky Blue */
+  color: black; /* Change text color to black */
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 12px 15px;
+  
+}
+
+/* Data Cell Styling */
+.styled-table td {
+  background-color: #ffffff;
+  color: #555;
+  font-size: 1.1em;
+  padding: 12px 15px;
+  text-align: left;
+  transition: background-color 0.3s ease;
+}
+
+/* Alternating Row Colors */
+.styled-table tr:nth-child(even) {
+  background-color: #f1f8e9; /* Light Green */
+}
+
+/* Hover Effects */
+.styled-table tr:hover {
+  background-color: #0288d1; /* Sky Blue Hover */
+  color: white;
+  cursor: pointer;
+}
+
+/* Add animation to table */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 2em;
+  }
+
+  .styled-table {
+    font-size: 0.9em;
+  }
+
+  .styled-table th, .styled-table td {
+    padding: 10px 12px;
+  }
+
+
+  
+}

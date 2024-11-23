@@ -1,0 +1,90 @@
+<form class="form" [formGroup]="searchForm">
+  <div class="row mb-2">
+    <!-- Departure Place -->
+    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+      <label for="departurePlace">
+        <i class="fas fa-plane-departure"></i> Departure Place
+      </label>
+      <input type="text" id="departurePlace" class="form-control" 
+             placeholder="Search Departure Place"
+             (input)="filterDepartureOptions($event)" 
+             [value]="selectedDepartureCity" />
+      <ul class="list-group" *ngIf="filteredDepartureCities.length > 0">
+        <!-- None Option -->
+        <li class="list-group-item" (click)="selectDepartureCity(null)">
+          None
+        </li>
+        <!-- Dynamic City Options -->
+        <li *ngFor="let city of filteredDepartureCities" class="list-group-item"
+            (click)="selectDepartureCity(city)">
+          {{ city.cityname }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Departure Date -->
+    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+      <label for="departureDate">
+        <i class="fas fa-plane-departure"></i> Departure Date
+      </label>
+      <input type="date" id="departureDate" class="form-control"
+             formControlName="departuredate" />
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <!-- Destination Place -->
+    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+      <label for="destinationPlace">
+        <i class="fas fa-plane-arrival"></i> Destination Place
+      </label>
+      <input type="text" id="destinationPlace" class="form-control" 
+             placeholder="Search Destination Place"
+             (input)="filterDestinationOptions($event)" 
+             [value]="selectedDestinationCity" />
+      <ul class="list-group" *ngIf="filteredDestinationCities.length > 0">
+        <!-- None Option -->
+        <li class="list-group-item" (click)="selectDestinationCity(null)">
+          None
+        </li>
+        <!-- Dynamic City Options -->
+        <li *ngFor="let city of filteredDestinationCities" class="list-group-item"
+            (click)="selectDestinationCity(city)">
+          {{ city.cityname }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Partners -->
+    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+      <label for="passengerCount">
+        <i class="fas fa-user"></i> Partners
+      </label>
+      <select id="passengerCount" class="form-control" (change)="onPassengerChange($event)">
+        <option value="0">None</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+
+    <!-- Class Type -->
+    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+      <label for="classType">
+        <i class="fas fa-chair"></i> Class Type
+      </label>
+      <select id="classType" class="form-control custom-select" formControlName="degreenameId">
+        <option *ngFor="let item of degree" [value]="item.id">
+          {{ item.degreename }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row align-items-center mt-3">
+    <!-- Search Button -->
+    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+      <input type="submit" class="btn btn-primary btn-block" value="Search" (click)="SearchInput()">
+    </div>
+  </div>
+</form>

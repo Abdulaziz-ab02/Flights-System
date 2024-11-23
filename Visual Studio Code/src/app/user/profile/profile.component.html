@@ -1,0 +1,123 @@
+<app-navbar></app-navbar>
+<div class="hero hero-inner">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="intro-wrap">
+                    <h1 class="mb-0">My Profile</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <!-- Profile Image Section -->
+            <div class="col-md-4 text-center">
+                <div class="profile-image-container">
+                    <img src="../../../assets/Images/{{home.userProfileInfo.image}}" alt="Profile Picture"
+                        class="img-fluid rounded-circle shadow-lg" style="width: 90%; max-width: 200px; " />
+                </div>
+            </div>
+
+            <!-- Profile Information Section -->
+            <div class="col-md-7">
+                <div class="card shadow-sm p-4">
+
+                    <div class="profile-info p-4 mb-3"
+                        style="background-color: #1A374D; color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+                        <p style="letter-spacing: 1.2px;"><strong>Full Name:</strong> {{home.userProfileInfo.firstname}}
+                            {{home.userProfileInfo.lastname}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>Username:</strong> {{home.userProfileInfo.username}}
+                        </p>
+                        <p style="letter-spacing: 1.2px;"><strong>Email:</strong> {{home.userProfileInfo.email}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>Phone:</strong> {{home.userProfileInfo.phone}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>Date of Birth:</strong>
+                            {{home.userProfileInfo.dateofbirth | date}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>National Number:</strong>
+                            {{home.userProfileInfo.nationalnumber}}</p>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button class="btn btn-primary btn-lg" (click)="openUpdateDialog(home.userProfileInfo)">
+                            Update Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<ng-template #callUpdateDailog>
+    <h2 mat-dialog-title>Update Profile</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateUserForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput formControlName="firstname" [(ngModel)]="pData.firstname">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput formControlName="lastname" [(ngModel)]="pData.lastname">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput formControlName="username" [(ngModel)]="pData.username">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" [(ngModel)]="pData.email">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Phone</mat-label>
+                    <input type="text" matInput formControlName="phone" [(ngModel)]="pData.phone">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Birth Date</mat-label>
+                    <input type="date" matInput formControlName="dateofbirth" [(ngModel)]="pData.dateofbirth">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label> National Number</mat-label>
+                    <input type="text" matInput formControlName="nationalnumber" [(ngModel)]="pData.nationalnumber">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" [(ngModel)]="pData.password">
+                </mat-form-field>
+            </div>
+
+            <input type="file" #file formControlName="image" (change)="uploadImage(file.files)">
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="cancel()">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+<app-footer></app-footer>

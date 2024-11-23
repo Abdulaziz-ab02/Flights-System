@@ -1,0 +1,49 @@
+/* Center the container both vertically and horizontally */
+.thank-you-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    padding: 30px;
+    text-align: center;
+    background-color: #e3f2fd; /* Light blue background */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border: 1px solid #90caf9; /* Border matching the blue theme */
+  }
+  /* Set the background color for the entire page */
+
+
+  
+  /* Header styling */
+  .thank-you-container h2 {
+    color: #1e88e5; /* Darker blue for the header */
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+  
+  /* Paragraph text styling */
+  .thank-you-container p {
+    font-size: 16px;
+    color: #546e7a; /* Soft grey-blue for text */
+    margin: 10px 0;
+  }
+  
+  /* Button styling */
+  .thank-you-container button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #1e88e5; /* Button blue color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .thank-you-container button:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+  }
+  

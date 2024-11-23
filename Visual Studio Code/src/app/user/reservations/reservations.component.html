@@ -1,0 +1,158 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="intro-wrap">
+          <h1>Welcome to Reservation Process</h1>
+          <div class="row">
+            <div class="col-12"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Main Content Area (Partner and Payment Forms) -->
+    <div class="col-md-8">
+      <h3 *ngIf=" numOfPassengers != 0">Partner Information</h3>
+
+      <ng-container *ngFor="let passenger of [].constructor(numOfPassengers); let i = index">
+        <button
+          class="btn btn-primary mb-2 d-flex align-items-center"
+          type="button"
+          data-toggle="collapse"
+          [attr.data-target]="'#partnerForm' + i"
+          aria-expanded="false"
+          [attr.aria-controls]="'partnerForm' + i">
+          <span>Toggle Partner {{ i + 1 }} Information</span>
+          <i class="fas fa-chevron-down ml-2 rotate-icon"></i>
+        </button>
+      
+        <div [id]="'partnerForm' + i" class="collapse">
+          <div class="card card-body">
+            <form>
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="partners[i].firstName" 
+                  [id]="'firstName' + i" 
+                  name="firstName{{i}}" 
+                  class="form-control" 
+                  placeholder="Enter First Name" 
+                  required 
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="partners[i].lastName" 
+                  [id]="'lastName' + i" 
+                  name="lastName{{i}}" 
+                  class="form-control" 
+                  placeholder="Enter Last Name" 
+                  required 
+                />
+              </div>
+              <div class="form-group">
+                <label for="nationalNumber">National Number</label>
+                <input 
+                  type="text" 
+                  [(ngModel)]="partners[i].nationalNumber" 
+                  [id]="'nationalNumber' + i" 
+                  name="nationalNumber{{i}}" 
+                  class="form-control" 
+                  placeholder="Enter National Number" 
+                  required 
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+      
+
+      <!-- Payment Information Section -->
+      <section class="payment-info mt-5">
+        <h3>Payment Information</h3>
+        <form [formGroup]="PaymentForm">
+          <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" id="cardNumber"  class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" formControlName="cardnumber"  />
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <label for="cvv">CVV</label>
+              <input type="text" id="cvv" class="form-control" placeholder="CVV" formControlName="cvv" />
+            </div>
+            <div class="col">
+              <label for="expiryDate">Expiry Date</label>
+              <input type="date" id="expiryDate" class="form-control" placeholder="MM/YY" formControlName="expirydate" />
+            </div>
+          </div>
+          <!-- Pay Button -->
+          <button (click)="AllSaved()" type="submit" class="btn btn-success mt-4">Pay</button>
+          <div *ngIf="falseInfo" class="alert alert-danger mt-3">
+            something wrong with the provided credentials
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Sidebar (Invoice Summary) -->
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body" style="width: 18rem;">
+          <h4 class="card-title">Invoice Summary</h4>
+          <hr>
+          <!-- Price per Person -->
+          <div class="d-flex justify-content-between mb-2">
+            <span ><i class="fas fa-user"></i> Price<span  *ngIf="selectedFlight.discountvalue > 0"> Before Discount</span> </span>
+            <span 
+            *ngIf="selectedFlight.discountvalue > 0" 
+            [ngStyle]="{ 'text-decoration': 'line-through', 'color': 'black' }">
+            JOD {{selectedFlight.price}}
+          </span>
+          <span *ngIf="selectedFlight.discountvalue == 0" >JOD {{selectedFlight.price}}</span>
+        </div>
+          <div *ngIf="selectedFlight.discountvalue > 0" class="d-flex justify-content-between mb-2">
+            <span><i class="fas fa-user"></i> Price </span>
+            <span>JOD {{selectedFlight.priceAfterDiscount}}</span>
+          </div>
+          <!-- Number of Persons -->
+          <div class="d-flex justify-content-between mb-2" *ngIf="numOfPassengers">
+            <span><i class="fas fa-users"></i> Partners</span>
+            <span>{{numOfPassengers}}</span>
+          </div>
+          <!-- Total Price -->
+          <div class="d-flex justify-content-between mb-2">
+            <span><i class="fas fa-money-bill-wave"></i> Total Price</span>
+            <span>JOD {{totalPrice}}</span>
+          </div>
+          <!-- Additional Information -->
+          <div *ngIf="selectedFlight.discountvalue > 0" class="d-flex justify-content-between mb-2">
+            <span><i class="fas fa-info-circle"></i> Discount value</span>
+            <span> %{{ selectedFlight.discountvalue }}</span>
+          </div>
+          <hr>
+          <!-- Final Price -->
+          <div class="d-flex justify-content-between font-weight-bold">
+            <span>Total Due</span>
+            <span>{{totalPrice}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>
+

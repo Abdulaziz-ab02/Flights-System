@@ -1,0 +1,96 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-6 col-xl-4">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2"> Users</p>
+                        <h1 class="mb-0">{{admin.UsersCount}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-4">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2"> Airports</p>
+                        <h1 class="mb-0">{{admin.AirportCount}}</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xl-4">
+                <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                    <i class="fa fa-chart-area fa-3x text-primary"></i>
+                    <div class="ms-3">
+                        <p class="mb-2"> Reservations</p>
+                        <h1 class="mb-0">{{admin.ReservationCount}}</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Sale & Revenue End -->
+
+    <!-- Sales Chart Start -->
+    <div class="container-fluid pt-4 px-4 display-flex ">
+        <div class="row g-4 justify-content-center align-items-center">
+            <!-- Bar Chart -->
+            <div class="col-sm-12 col-xl-12">
+                <div class=" bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h1 class="mb-0">Entity Counts (Bar Chart)</h1>
+                    </div>
+                    <div id="chart"></div> <!-- Bar chart will render here -->
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!-- Sales Chart End -->
+
+
+    <!-- Recent Sales Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Registered Users Information</h1>
+                <!-- <a href="">Show All</a> -->
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Date of Birth</th>
+                            <th scope="col">nationalnumber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of admin.users">
+                            <td>{{obj.firstname}}</td>
+                            <td>{{obj.lastname}}</td>
+                            <td>{{obj.username}}</td>
+                            <td>{{obj.email}}</td>
+                            <td>{{obj.phone}}</td>
+                            <td>{{obj.dateofbirth |date}}</td>
+                            <td>{{obj.nationalnumber}}</td>
+                            <!-- <td><a class="btn btn-sm btn-primary" href="">Detail</a></td> -->
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Recent Sales End -->
+</div>
+<app-footer></app-footer>

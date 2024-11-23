@@ -1,0 +1,53 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <app-navbar></app-navbar>
+
+  <div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+      <!-- Degree Name Centered -->
+      <div class="mb-4">
+        <h2>{{ degreeName }}</h2>
+      </div>
+
+      <!-- Stylish Table Design -->
+      <button mat-raised-button color="primary"
+        class="d-flex align-items-center justify-content-between mb-4" (click)="addFacility()">Add</button>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th class="bold-header">#</th> <!-- For the number column -->
+            <th class="bold-header">Facility Name</th>
+         
+            <th class="bold-header">Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let facility of facilities; let i = index">
+            <td class="text-center">{{ i + 1 }}</td> <!-- Show the row number (index + 1) -->
+            <td class="text-center">{{ facility.facilityname }}</td>
+         
+            <td class="text-center"> <button mat-raised-button color="warn"  (click)="deleteFacility(facility.degreefacilityID)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="text-center">
+    <button mat-raised-button color="primary" (click)="goBack()">← Back to Degree</button>
+  </div>
+</div>
+
+
+<ng-template #callDeleteFacility>
+  <h1 mat-dialog-title>Delete Facility</h1>
+  <div mat-dialog-content>
+      Would you like to delete this facility?
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button mat-dialog-close="yes">Yes</button>
+      <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+  </div>
+</ng-template>
+
+
+<app-footer></app-footer>

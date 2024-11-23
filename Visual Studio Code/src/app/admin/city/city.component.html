@@ -1,0 +1,96 @@
+<app-sidebar></app-sidebar>
+
+<div class="content">
+  <app-navbar></app-navbar>
+
+  <div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="mb-0">City Info</h1>
+      </div>
+
+      <!-- Create City Button -->
+      <td>
+        <button mat-raised-button color="primary" (click)="addCity()">Create</button>
+      </td>
+
+      <div class="table">
+        <table class="table">
+          <thead>
+            <tr class="text-dark">
+              <th scope="col">City Name</th>
+              <th scope="col">Country</th>
+              <th scope="col">City Image</th>
+              <th scope="col" colspan="2">Operations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of cities$ | async">
+              <td>{{ obj.cityname }}</td>
+              <td>{{ obj.countryname }}</td>
+              <td>
+                <img src="../../../assets/Images/{{ obj.cityimage }}" style="width: 80px; height: 80px;">
+              </td>
+              <td>
+                <button mat-raised-button color="primary" (click)="openUpdateDialog(obj)">Update</button>
+              </td>
+              <td>
+                <button mat-raised-button color="warn" (click)="openDeleteDialog(obj.id)">Delete</button>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<!-- Delete Dialog -->
+<ng-template #deleteCity>
+  <h1 mat-dialog-title>Delete City</h1>
+  <div mat-dialog-content>
+    Would you like to delete this city?
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close="yes">Yes</button>
+    <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+  </div>
+</ng-template>
+
+<!-- Update Dialog -->
+<ng-template #updateCity>
+  <h2 mat-dialog-title>Update City</h2>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="UpdateCity">
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>City Name</mat-label>
+          <input type="text" matInput formControlName="cityname" [(ngModel)]="pData.cityname">
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Country</mat-label>
+          <mat-select formControlName="countryid" [(ngModel)]="pData.countryid" required>
+            <mat-option *ngFor="let country of countries" [value]="country.id">
+              {{ country.countryname }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <input type="file" #file formControlName="cityimage" (change)="uploadFile(file.files)">
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="save()">Save</button>
+  </mat-dialog-actions>
+</ng-template>

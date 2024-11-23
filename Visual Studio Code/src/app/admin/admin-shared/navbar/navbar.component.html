@@ -1,0 +1,78 @@
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+    <a class="navbar-brand d-flex d-lg-none me-4">
+        <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+    </a>
+    <a class="sidebar-toggler flex-shrink-0">
+        <i class="fa fa-bars"></i>
+    </a>
+    <!-- <form class="d-none d-md-flex ms-4">
+        <input class="form-control border-0" type="search" placeholder="Search">
+    </form> -->
+
+    <div class="navbar-nav align-items-center ms-auto">
+
+        <div class="nav-item dropdown" [ngSwitch]="role_id">
+            <a class="nav-link " data-bs-toggle="dropdown" *ngSwitchCase="1">
+                <img class="rounded-circle me-lg-2" src="../../../../assets/Images/{{home.userProfileInfo.image}}"
+                    alt="img" style="width: 40px; height: 40px;  margin-bottom: 15px;">
+                <!-- <span class="d-none d-lg-inline-flex">{{home.userProfileInfo.username}}</span> -->
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/admin/viewprofile">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                        <span>My Profile</span>
+                    </button>
+                    <button mat-menu-item (click)="Logout()">
+                        <mat-icon svgIcon="logout_icon" aria-hidden="false"
+                            aria-label="Example thumbs up SVG icon"></mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+
+            </a>
+            <a class="nav-link " data-bs-toggle="dropdown" *ngSwitchCase="3">
+                <img class="rounded-circle me-lg-2"
+                    src="../../../../assets/Images/{{home.airlineProfileInfo.airlineimage}}" alt="img"
+                    style="width: 40px; height: 40px;">
+                <span class="d-none d-lg-inline-flex">{{home.airlineProfileInfo.airlinename}}</span>
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item routerLink="/admin/viewprofile">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                        <span>My Profile</span>
+                    </button>
+                    <button mat-menu-item (click)="Logout()">
+                        <mat-icon svgIcon="logout_icon" aria-hidden="false"
+                            aria-label="Example thumbs up SVG icon"></mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </a>
+
+
+
+
+
+
+
+            <!-- 
+
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                <a routerLink="/admin/view-profile" class="dropdown-item">My Profile</a>
+
+                <a routerLink="/user/home" class="dropdown-item">Log Out</a>
+            </div> -->
+        </div>
+    </div>
+</nav>
+
+<!-- Navbar End -->

@@ -1,0 +1,75 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Testimonials</h1>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Testimonial Content</th>
+                            <th scope="col">User Full Name</th>
+                            <th scope="col">Testimonial Date</th>
+                            <th scope="col" colspan="2">Operations</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of testimonials">
+                            <td>{{obj.testimonialcontent}}</td>
+                            <td>{{obj.firstname}} {{obj.lastname}}</td>
+                            <td>{{obj.testimonialdate |date}} </td>
+
+                            <ng-container *ngIf="obj.testimonialstatus === 'Pending'">
+                                <td>
+                                    <button class="btn btn-success"
+                                        (click)="approveTestimonial(obj.id, 'Approved')">Approve</button>
+                                </td>
+                                <td>
+                                    <button mat-raised-button color="warn"
+                                        (click)="openDeleteDialog(obj.id)">Deny</button>
+                                </td>
+                            </ng-container>
+
+                            <ng-container *ngIf="obj.testimonialstatus === 'Approved'">
+                                <td>
+                                    <button class="btn btn-success" disabled>Approved</button>
+                                </td>
+                            </ng-container>
+
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #callDeleteDailog>
+    <h1 mat-dialog-title>Delete Testimonial</h1>
+    <div mat-dialog-content>Are you sure you went to delete this testimonial ?</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close="no">No</button>
+    </div>
+</ng-template>
+
+<ng-template #callChangeStatusDailog>
+    <h1 mat-dialog-title>Approve Testimonial</h1>
+    <div mat-dialog-content>Are you sure you went to approve this testimonial ?</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close="no">No</button>
+    </div>
+</ng-template>
+
+
+<app-footer></app-footer>

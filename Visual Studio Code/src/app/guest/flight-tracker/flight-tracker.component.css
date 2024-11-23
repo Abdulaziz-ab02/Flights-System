@@ -1,0 +1,43 @@
+#map {
+  height: 100%;
+  width: 100%;
+}
+.flight-card {
+  background: #f7f9fc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.flight-search {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.flight-info {
+  margin-top: 20px;
+}
+
+.flight-details {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flight-details h2 {
+  color: #0056b3;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+
+.flight-data strong {
+  color: #333;
+}
+.flight-data i {
+  color: #0056b3;
+  margin-right: 8px;
+  font-size: 1.2em;
+  vertical-align: middle;
+}

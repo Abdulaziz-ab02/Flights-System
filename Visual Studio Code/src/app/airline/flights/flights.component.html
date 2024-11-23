@@ -1,0 +1,116 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Flight Preview</h1>
+                <button mat-raised-button color="primary" (click)="toggleCreateForm()">
+                    {{ showCreateForm ? 'Cancel' : 'Create Flight' }}
+                </button>
+            </div>
+
+            <div *ngIf="showCreateForm">
+                <form [formGroup]="createFlightForm" (ngSubmit)="createFlight()">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input formControlName="flightNumber" class="form-control" placeholder="Flight Number" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="capacity" type="number" class="form-control" placeholder="Capacity" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="pricePerPassenger" type="number" class="form-control" placeholder="Price per Passenger" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input formControlName="departureDate" type="datetime-local" class="form-control" placeholder="Departure Date" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="destinationDate" type="datetime-local" class="form-control" placeholder="Destination Date" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="discountvalue" type="number" class="form-control" placeholder="Discount Value" min="0" required>
+                        </div>
+                        <div class="col">
+                            <p>Total Price After Discount: {{ priceAfterDiscount | currency }}</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Departure Airport</mat-label>
+                                <mat-select formControlName="departureairportid">
+                                    <mat-option *ngFor="let airport of airports" [value]="airport.id" required>
+                                        {{ airport.airportname }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Destination Airport</mat-label>
+                                <mat-select formControlName="destinationairportid">
+                                    <mat-option *ngFor="let airport of airports" [value]="airport.id" required>
+                                        {{ airport.airportname }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Degree</mat-label>
+                                <mat-select formControlName="degreeid">
+                                    <mat-option *ngFor="let degree of degrees" [value]="degree.id" required>
+                                        {{ degree.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="createFlightForm.invalid">
+                        {{ editingFlightId ? 'Update Flight' : 'Create Flight' }}
+                    </button>
+                </form>
+            </div>
+
+            <div class="table mt-4">
+                <table class="table">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Flight Number</th>
+                            <th scope="col">Capacity</th>
+                            <th scope="col">Price per Passenger</th>
+                            <th scope="col">Departure Date</th>
+                            <th scope="col">Destination Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" colspan="2">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let flight of flights">
+                            <td>{{ flight.flightNumber }}</td>
+                            <td>{{ flight.capacity }}</td>
+                            <td>{{ flight.pricePerPassenger | currency }}</td>
+                            <td>{{ flight.departureDate | date: 'short' }}</td>
+                            <td>{{ flight.destinationDate | date: 'short' }}</td>
+                            <td>{{ flight.status }}</td>
+                            <td>
+                                <button mat-raised-button color="primary" (click)="editFlight(flight)">
+                                    Update
+                                </button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="primary" (click)="deleteFlight(flight.id)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

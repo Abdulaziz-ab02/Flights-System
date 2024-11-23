@@ -1,0 +1,42 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">Reservations</h1>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Reservation Date</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Flight Number</th>
+                            <th scope="col">Departure Date</th>
+                            <th scope="col">Destination Date</th>
+                            <th scope="col">Number of Passengers</th>
+                            <th scope="col">Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of Reservations">
+                            <td>{{ obj.reservationdate | date: 'dd MMM yyyy' }}</td>
+                            <td>{{ obj.firstname }}</td>
+                            <td>{{ obj.lastname }}</td>
+                            <td>{{ obj.flightnumber }}</td>
+                            <td>{{ obj.departuredate | date: 'short' }}</td>
+                            <td>{{ obj.destinationdate | date: 'short' }}</td>
+                            <td>{{ obj.numofpassengers }}</td>
+                            <td>{{ obj.totalprice | currency }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

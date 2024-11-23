@@ -1,0 +1,93 @@
+/* create-airport.component.css */
+.map-container {
+    height: 300px;
+    margin: 15px 0;
+    position: relative;
+  }
+  
+  #map {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+  }
+  
+  #map:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .coordinates-container {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .coordinates-container mat-form-field {
+    flex: 1;
+  }
+  
+  .example-container {
+    margin-bottom: 15px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+  }
+  
+  /* Custom icon styling */
+  .custom-div-icon {
+    background: transparent;
+    border: none;
+  }
+  
+  .custom-div-icon i {
+    position: absolute;
+    width: 22px;
+    font-size: 22px;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    text-align: center;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .custom-div-icon i:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Pulsing animation for the marker */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Add a nice hover effect to the map container */
+  .map-container::after {
+    content: 'Click to set airport location';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #666;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .map-container:hover::after {
+    opacity: 1;
+  }

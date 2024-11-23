@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  integrity="sha512-Kz6/4r4V6o+Q6uHqYtG9rAb/9Nx/+lFwKFO8WoPaSOA4DN0VSDZT/jpyDhTOnRA9XM8B7K4TfJGjtk8TnQKAwA=="
+  crossorigin="anonymous"
+/>
+
+<div class="hero hero-inner">
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-lg-6 mx-auto text-center">
+              <div class="intro-wrap">
+                  <h1 class="mb-0">Track page</h1>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container mt-5" >
+  <mat-card  class="flight-card">
+    <div class="flight-search">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Enter Flight ID</mat-label>
+        <input matInput [(ngModel)]="flightId"  />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="searchFlight()">Search</button>
+    </div>
+  </mat-card>
+
+  <div class="flight-info mt-4"   >
+    <mat-card class="flight-details">
+      <h2>Flight Information</h2>
+      <div class="flight-data">
+        <p><i class="fas fa-plane"></i> <strong>Flight Number:</strong> {{ flightData.flightNumber }}</p>
+        <p>
+          <i class="fas fa-location-arrow"></i>
+          <strong>Departure:</strong> {{ flightData.departureCityName }} - {{
+          flightData.departureDate | date: 'short' }}
+        </p>
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          <strong>Arrival:</strong> {{ flightData.destinationCityName }} - {{
+          flightData.destinationDate | date: 'short' }}
+        </p>
+        <p><i class="fas fa-building"></i> <strong>Airline:</strong> {{ flightData.airlineName }}</p>
+        <p><i class="fas fa-info-circle"></i> <strong>Status:</strong> {{ flightData.status }}</p>
+        <div *ngIf="flightStatusMessage" class="flight-status mt-3">
+          <p><strong>Action:</strong> {{ flightStatusMessage }}</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+  <div id="map" style="height: 800px; width: 100%; margin-top: 20px; border-radius: 8px;"></div>
+</div>

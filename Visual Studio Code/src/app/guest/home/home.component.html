@@ -1,0 +1,208 @@
+<app-navbar></app-navbar>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="intro-wrap">
+                    <!-- <h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Trip In <span
+                            class="typed-words"></span></h1> -->
+                    <h1 class="mb-5"><span class="d-block">{{home.homePage[0].homecontent}}</span> </h1>
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <app-search-form (flightsFound)="handleHomeFlights($event)"
+                                (partnerCount)="handlePartnersChanges($event)"></app-search-form>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="slides">
+                    <img src="../../../assets/Images/{{home.homePage[0].homeimage}}" style="width: 100%; height: 100%;"
+                        alt="Image" class="img-fluid active">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-6 text-center">
+                <h2 class="section-title text-center mb-3">Our Services</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                    the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                    language ocean.</p>
+            </div>
+        </div>
+        <div class="row align-items-stretch">
+            <div class="col-lg-4 order-lg-1">
+                <div class="h-100">
+                    <div class="frame h-100">
+                        <div class="feature-img-bg h-100"
+                            style="background-image: url('../../../assets/Home/images/hero-slider-1.jpg');">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-1">
+
+                <div class="feature-1 d-md-flex">
+                    <div class="align-self-center">
+                        <span class="flaticon-house display-4 text-primary"></span>
+                        <h3>Beautiful Condo</h3>
+                        <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+                    </div>
+                </div>
+
+                <div class="feature-1 ">
+                    <div class="align-self-center">
+                        <span class="flaticon-restaurant display-4 text-primary"></span>
+                        <h3>Restaurants & Cafe</h3>
+                        <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-6 col-sm-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-3">
+
+                <div class="feature-1 d-md-flex">
+                    <div class="align-self-center">
+                        <span class="flaticon-mail display-4 text-primary"></span>
+                        <h3>Easy to Connect</h3>
+                        <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+                    </div>
+                </div>
+
+                <div class="feature-1 d-md-flex">
+                    <div class="align-self-center">
+                        <span class="flaticon-phone-call display-4 text-primary"></span>
+                        <h3>24/7 Support</h3>
+                        <p class="mb-0">Even the all-powerful Pointing has no control about the blind texts.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="untree_co-section testimonial-section mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div style="text-align: center;" *ngIf="isLoggedIn">
+                <button class="btn btn-primary m-3" (click)="openCreateDialog()">Add testimonial</button>
+            </div>
+
+
+            <div class="col-lg-12 text-center">
+                <h2 class="section-title text-center mb-5">Testimonials</h2>
+
+                <div class="row">
+                    <ng-container *ngFor="let obj of testimonials">
+                        <div class="col-md-4 mb-4">
+                            <div class="card testimonial-card">
+                                <!-- Card Body with Flexbox Layout -->
+                                <div class="card-body d-flex flex-column">
+                                    <div class="image-container">
+                                        <img *ngIf="obj.image" src="../../../assets/Images/{{obj.image}}" alt="Image"
+                                            class="card-img">
+                                        <img *ngIf="!obj.image" src="../../../assets/Images/default-placeholder.jpg"
+                                            alt="Placeholder" class="card-img">
+                                    </div>
+
+                                    <!-- Text content below the image (takes the other half) -->
+                                    <div class="text-content">
+                                        <h3 class="card-title">{{obj.firstname}} {{obj.lastname}}</h3>
+                                        <blockquote class="blockquote">
+                                            <p class="mb-0">&ldquo;{{obj.testimonialcontent}}&rdquo;</p>
+                                        </blockquote>
+                                        <p><strong>Rating: </strong>
+                                            <ng-container *ngFor="let star of [].constructor(obj.rating);">
+                                                <span class="star">&#9733;</span> <!-- Filled star -->
+                                            </ng-container>
+                                            <ng-container *ngFor="let star of [].constructor(5 - obj.rating);">
+                                                <span class="star">&#9734;</span> <!-- Empty star -->
+                                            </ng-container>
+                                        </p>
+                                        <p><small class="text-muted">{{obj.testimonialdate | date}}</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<div class="py-5 cta-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
+                <p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing
+                    elit. Excepturi, fugit?</p>
+                <p class="mb-0"><a routerLink="/contactus"
+                        class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #callCreateDailog>
+    <h2 mat-dialog-title>Create Testimonial</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="createTestimonial">
+
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Testimonial Content</mat-label>
+                    <input type="text" matInput formControlName="testimonialcontent">
+                    <mat-error *ngIf="createTestimonial.controls['testimonialcontent'].hasError('required')">Testimonial
+                        Content is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Testimonial Rating</mat-label>
+                    <input type="number" matInput formControlName="rating" min="1" max="5">
+                    <mat-error *ngIf="createTestimonial.controls['rating'].hasError('min')">Min Rating is 1</mat-error>
+                    <mat-error *ngIf="createTestimonial.controls['rating'].hasError('max')">Max Rating is 5</mat-error>
+                </mat-form-field>
+            </div>
+
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-primary m-3" (click)="cancel()">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()"
+            class="btn btn-primary">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<app-footer></app-footer>

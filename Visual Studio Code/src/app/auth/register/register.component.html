@@ -1,0 +1,92 @@
+<!-- Sign up form -->
+<div class="main">
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">User Sign up</h2>
+                    <form [formGroup]="createUserForm" method="POST" class="register-form" id="register-form">
+
+                        <div class="form-group">
+                            <label for="fname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="fname" id="fname" placeholder="Your First Name"
+                                formControlName="firstname" />
+                            <span *ngIf="createUserForm.controls['firstname'].hasError('required')"
+                                style="color:red;">First
+                                Name is Required </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="lname" id="lname" placeholder="Your Last Name"
+                                formControlName="lastname" />
+                            <span *ngIf="createUserForm.controls['lastname'].hasError('required')"
+                                style="color:red;">Last
+                                Name is Required </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="username" id="username" placeholder="Your Username"
+                                formControlName="username" />
+                            <span *ngIf="createUserForm.controls['username'].hasError('required')" style="color:red;">
+                                Username is Required </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" name="email" id="email" placeholder="Your Email"
+                                formControlName="email" />
+                            <span *ngIf="createUserForm.controls['email'].hasError('required')" style="color:red;">
+                                Email is Required </span>
+                            <span *ngIf="createUserForm.controls['email'].hasError('email') " style="color:red;">Please
+                                enter a valid email address</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="zmdi zmdi-email"></i></label>
+                            <input type="text" name="phone" id="phone" placeholder="Your Phone"
+                                formControlName="phone" />
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate"><i class="zmdi zmdi-email"></i></label>
+                            <input type="date" name="birthdate" id="birthdate" placeholder="Your Date of Birth"
+                                formControlName="dateofbirth" />
+                        </div>
+                        <div class="form-group">
+                            <label for="nationalnumber"><i class="zmdi zmdi-email"></i></label>
+                            <input type="text" name="nationalnumber" id="nationalnumber"
+                                placeholder="Your National Number" formControlName="nationalnumber" />
+                            <span *ngIf="createUserForm.controls['nationalnumber'].hasError('required') "
+                                style="color:red;">Password is Required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="pass" id="pass" placeholder="Password"
+                                formControlName="password" (change)="matchError()" />
+                            <span *ngIf="createUserForm.controls['password'].hasError('required') "
+                                style="color:red;">Password is Required</span>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                            <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"
+                                formControlName="repeatPassword" (change)="matchError()" />
+                            <span *ngIf="createUserForm.controls['repeatPassword'].hasError('misMatch')"
+                                style="color: red;">Passwords do not match!</span>
+                        </div>
+
+                        <input type="file" #file formControlName="image" (change)="uploadImage(file.files)">
+
+                        <div class="form-group form-button">
+                            <button [disabled]="!createUserForm.valid" class="form-submit btn" type="button"
+                                (click)="submit()">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="../../../assets/LogReg/images/signup-image.jpg" alt="sign up image"></figure>
+                    <a routerLink="/security/airlineregister" class="signup-image-link">Register as Airline</a>
+                    <a routerLink="/security/login" class="signup-image-link">Already have an account</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

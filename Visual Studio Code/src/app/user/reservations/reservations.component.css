@@ -1,0 +1,30 @@
+.container {
+    max-width: 600px;
+  }
+  
+  .card-body {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .payment-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  button {
+    width: 100%;
+  }
+  .rotate-icon {
+    transition: transform 0.3s ease;
+  }
+  .collapse:not(.show) + .rotate-icon {
+    transform: rotate(0deg);
+  }
+  .collapse.show + .rotate-icon {
+    transform: rotate(90deg);
+  }
+  

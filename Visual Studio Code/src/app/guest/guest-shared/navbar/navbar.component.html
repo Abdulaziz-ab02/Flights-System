@@ -1,0 +1,55 @@
+<nav class="site-nav">
+    <div class="container">
+        <div class="site-navigation">
+            <a href="index.html" class="logo m-0">Tour <span class="text-primary">.</span></a>
+
+            <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right">
+                <li class="active"><a routerLink="/guest/home">Home</a></li>
+                <li><a routerLink="/guest/about">About</a></li>
+                <li><a routerLink="/guest/contactus">Contact Us</a></li>
+                <li><a routerLink="/flightTracker">Track a flight </a></li>
+
+
+                <li *ngIf="!isLoggedIn">
+                    <a class="btn btn-primary" routerLink="/security/login">Login</a>
+                </li>
+
+
+                <li *ngIf="isLoggedIn">
+                    <img class="rounded-circle" src="../../../../assets/Images/{{home.userProfileInfo.image}}" alt="img"
+                        style="width: 40px; height: 40px; margin-bottom: 15px;">
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item routerLink="/user/profile">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                            <span>My Profile</span>
+                        </button>
+                        <button mat-menu-item routerLink="/user/reservationsRecord">
+                            <mat-icon svgIcon="record_icon" aria-hidden="false"
+                                aria-label="Example thumbs up SVG icon"></mat-icon>
+                            <span>My Reservations</span>
+                        </button>
+                        <button mat-menu-item (click)="Logout()">
+                            <mat-icon svgIcon="logout_icon" aria-hidden="false"
+                                aria-label="Example thumbs up SVG icon"></mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                </li>
+
+
+            </ul>
+
+            <a href="#"
+                class="burger ml-auto float-right site-menu-toggle js-menu-toggle d-inline-block d-lg-none light"
+                data-toggle="collapse" data-target="#main-navbar">
+                <span></span>
+            </a>
+
+        </div>
+    </div>
+</nav>

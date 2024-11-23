@@ -1,0 +1,150 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <app-navbar></app-navbar>
+
+  <div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h1 class="mb-0">Airport Info</h1>
+
+
+      </div>
+      <td>
+        <button mat-raised-button color="primary" (click)="addAirport()">Create</button>
+      </td>
+
+      <div class="table">
+
+        <table class="table ">
+
+          <thead>
+            <tr class="text-dark">
+
+              <th scope="col">Airport Name</th>
+              <th scope="col">City </th>
+              <th scope="col">Longitude</th>
+              <th scope="col">Latitude</th>
+              <th scope="col">Airport Code</th>
+              <th scope="col">Airport Image</th>
+              <th scope="col" colspan="2">Operations</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of admin.airport">
+
+              <td>{{obj.airportname}}</td>
+              <td>{{obj.cityname}}</td>
+              <td>{{obj.longitude}}</td>
+              <td>{{obj.latitude}}</td>
+              <td>{{obj.iatacode}}</td>
+              <td>
+                <img src="../../../assets/Images/{{obj.airportimage}}" style="width: 80px; height: 80px;">
+              </td>
+              <td>
+                <button mat-raised-button color="primary" (click)="openUpdateDialog(obj)">Update</button>
+              </td>
+              <td>
+                <button mat-raised-button color="warn" (click)="openDeleteDialog(obj.id)">Delete</button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>
+
+<app-footer></app-footer>
+
+
+
+<ng-template #deleteAirport>
+  <h1 mat-dialog-title>Delete Airport</h1>
+  <div mat-dialog-content>
+    Would you like to delete this Airport?
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close="yes">Yes</button>
+    <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+<!--update-->
+
+
+<ng-template #updateAirport>
+  <h2 mat-dialog-title>Update Airport</h2>
+  <mat-dialog-content class="mat-typography">
+
+    <form action="" [formGroup]="UpdateAirport">
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Airport Name</mat-label>
+          <input type="text" matInput formControlName="airportname" [(ngModel)]="pData.airportname">
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Airport Code</mat-label>
+          <input type="text" matInput formControlName="iatacode" [(ngModel)]="pData.iatacode">
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Airport Longitude</mat-label>
+          <input type="number" matInput formControlName="longitude" [(ngModel)]="pData.longitude">
+        </mat-form-field>
+      </div>
+
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Airport Latitude</mat-label>
+          <input type="number" matInput formControlName="latitude" [(ngModel)]="pData.latitude">
+        </mat-form-field>
+      </div>
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <mat-select formControlName="cityid" [(ngModel)]="pData.cityid" required>
+            <mat-option *ngFor=" let city of cities" [value]="city.id">
+              {{ city.cityname }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <input type="file" #file formControlName="airportimage" (change)="uploadFile(file.files)">
+
+    </form>
+
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="save()">Save</button>
+  </mat-dialog-actions>
+
+</ng-template>

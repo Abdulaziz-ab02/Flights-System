@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+<div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+                <a class="navbar-brand mx-4 mb-3" routerLink="/admin/home">
+                        <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>TOUR <i
+                                        class="fa-solid fa-plane-departure" style="color: #184263;"></i></h3>
+                </a>
+
+                <div [ngSwitch]="role_id">
+
+                        <div class="navbar-nav w-100" *ngSwitchCase="1">
+                                <a routerLink="/admin/home" class="nav-item nav-link active"><i
+                                                class="fa-solid fa-house" style="color: #184263;"></i> Home</a>
+                                <a routerLink="/admin/airlines" class="nav-item nav-link"><i class="fa-solid fa-plane"
+                                                style="color:  #184263;"></i>
+                                        Airlines</a>
+                                <a routerLink="/admin/country" class="nav-item nav-link"><i class="fa-solid fa-city"
+                                                style="color:  #184263;"></i>
+                                        Country</a>
+                                <a routerLink="/admin/city" class="nav-item nav-link"><i class="fa-solid fa-city"
+                                                style="color:  #184263;"></i>
+                                        City</a>
+                                <a routerLink="/admin/airports" class="nav-item nav-link"><i
+                                                class="fa-solid fa-cart-flatbed-suitcase" style="color: #184263;"></i>
+                                        Airports</a>
+                                <a routerLink="/admin/users" class="nav-item nav-link"><i
+                                                class="fa-sharp fa-solid fa-users" style="color: #184263;"></i>
+                                        Users</a>
+                                <a routerLink="/admin/manage-testimonials" class="nav-item nav-link"><i
+                                                class="fa-solid fa-star" style="color: #184263;"></i>
+                                        Testimonials</a>
+                                <a routerLink="/admin/report" class="nav-item nav-link"><i
+                                                class="fa-solid fa-chart-line" style="color: #184263;"></i>
+                                        Report</a>
+
+                                <a routerLink="/admin/Degree" class="nav-item nav-link"><i class="fa-solid fa-stairs"
+                                                style="color:  #184263;"></i>
+                                        Degrees
+                                </a>
+
+                                <a routerLink="/admin/facilities" class="nav-item nav-link"><i
+                                                class="fa-solid fa-puzzle-piece" style="color: #184263;"></i>Facilities
+                                </a>
+
+                                <a routerLink="/admin/contactMessages" class="nav-item nav-link"><i
+                                                class="fa-solid fa-envelope" style="color: #184263;"></i>Messages
+                                </a>
+                                <a routerLink="/admin/UsersWithPartners" class="nav-item nav-link"> <i
+                                                class="fa-sharp fa-solid fa-users" style="color: #184263;"></i>
+                                        User-Partner
+                                </a>
+
+
+                                <a routerLink="/admin/manage-aboutus" class="nav-item nav-link"><i
+                                                class="fa-solid fa-address-card" style="color: #184263;"></i>About
+                                        Page</a>
+                                <a routerLink="/admin/manage-contactus" class="nav-item nav-link"><i
+                                                class="fa-solid fa-phone" style="color: #184263;"></i>Contact Page</a>
+                                <a routerLink="/admin/manage-home" class="nav-item nav-link"><i
+                                                class="fa-solid fa-house" style="color: #184263;"></i>Home
+                                        Page</a>
+
+                        </div>
+
+
+                        <div class="navbar-nav w-100" *ngSwitchCase="3">
+                                <a routerLink="/airline/flights" class="nav-item nav-link active"><i
+                                                class="fa-solid fa-plane" style="color: #184263;"></i> Flights</a>
+                                <a routerLink="/airline/reservations" class="nav-item nav-link"><i
+                                                class="fa-solid fa-chart-line"
+                                                style="color:  #184263;"></i>Reservations</a>
+                        </div>
+
+
+                </div>
+
+        </nav>
+</div>

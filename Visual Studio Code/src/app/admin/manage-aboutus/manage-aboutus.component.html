@@ -1,0 +1,67 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+    <app-navbar></app-navbar>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0">About Page Info</h1>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">About Page title</th>
+                            <th scope="col">About Page content</th>
+                            <th scope="col">About Page Image</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{home.aboutPage[0].abouttitle}}</td>
+                            <td>{{home.aboutPage[0].aboutcontent}}</td>
+                            <td>
+                                <img src="../../../assets/Images/{{home.aboutPage[0].aboutimage}}"
+                                    style="width: 200px; height: 200px;">
+                            </td>
+                            <td><button mat-raised-button color="primary"
+                                    (click)="openUpdateDialog(home.aboutPage[0])">Update</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #callUpdateDailog>
+    <h2 mat-dialog-title>Update About Page</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateAboutForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>About Title</mat-label>
+                    <input type="text" matInput formControlName="abouttitle" [(ngModel)]="pData.abouttitle">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>About Content</mat-label>
+                    <input type="text" matInput formControlName="aboutcontent" [(ngModel)]="pData.aboutcontent">
+                </mat-form-field>
+            </div>
+            <input type="file" #file formControlName="aboutimage" (change)="uploadImage(file.files)">
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<app-footer></app-footer>
